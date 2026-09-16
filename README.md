@@ -1,9 +1,14 @@
-# 04-react-query
+# 04-react-query — Пошук фільмів
 
-React + TypeScript + Vite starter with [TanStack Query](https://tanstack.com/query/latest) already wired up in [src/main.tsx](src/main.tsx).
+Застосунок пошуку фільмів (TMDB API) з пагінацією, побудований на React + TypeScript + Vite. Стан запитів керується через [TanStack Query](https://tanstack.com/query/latest).
 
-## Scripts
+## Налаштування
 
-- `npm run dev` — start the dev server
-- `npm run build` — type-check and build for production
-- `npm run preview` — preview the production build
+1. Скопіюй `.env.example` у `.env`
+2. Впиши свій TMDB API Read Access Token (v4 auth) у `VITE_TMDB_TOKEN`
+
+## Скрипти
+
+- `npm run dev` — запуск дев-сервера
+- `npm run build` — перевірка типів і продакшн-збірка
+- `npm run preview` — перегляд продакшн-збірки
