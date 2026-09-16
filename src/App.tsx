@@ -37,16 +37,6 @@ function App() {
     <div className={css.container}>
       <SearchBar onSubmit={handleSearchSubmit} />
 
-      {isLoading ? <p className={css.message}>Loading...</p> : null}
-      {isError ? (
-        <p className={css.message}>Something went wrong. Please try again.</p>
-      ) : null}
-      {!isLoading && !isError && query !== '' && movies.length === 0 ? (
-        <p className={css.message}>No movies found for your request.</p>
-      ) : null}
-
-      <MovieGrid movies={movies} />
-
       {totalPages > 1 ? (
         <ReactPaginate
           pageCount={totalPages}
@@ -60,6 +50,16 @@ function App() {
           previousLabel="←"
         />
       ) : null}
+
+      {isLoading ? <p className={css.message}>Loading...</p> : null}
+      {isError ? (
+        <p className={css.message}>Something went wrong. Please try again.</p>
+      ) : null}
+      {!isLoading && !isError && query !== '' && movies.length === 0 ? (
+        <p className={css.message}>No movies found for your request.</p>
+      ) : null}
+
+      <MovieGrid movies={movies} />
     </div>
   )
 }
