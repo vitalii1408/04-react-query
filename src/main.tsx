@@ -2,7 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import 'modern-normalize/modern-normalize.css'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import App from './App.tsx'
+import App from './components/App/App.tsx'
 import './index.css'
 
 const queryClient = new QueryClient()

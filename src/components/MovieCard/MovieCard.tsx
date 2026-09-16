@@ -3,13 +3,14 @@ import css from './MovieCard.module.css'
 
 interface MovieCardProps {
   movie: Movie
+  onSelect: (movie: Movie) => void
 }
 
 const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500'
 
-function MovieCard({ movie }: MovieCardProps) {
+function MovieCard({ movie, onSelect }: MovieCardProps) {
   return (
-    <li className={css.card}>
+    <li className={css.card} onClick={() => onSelect(movie)}>
       {movie.poster_path ? (
         <img
           className={css.poster}

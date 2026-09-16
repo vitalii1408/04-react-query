@@ -2,9 +2,13 @@ import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { useState, type ComponentType } from 'react'
 import ReactPaginateModule from 'react-paginate'
 import type { ReactPaginateProps } from 'react-paginate'
-import MovieGrid from './components/MovieGrid/MovieGrid'
-import SearchBar from './components/SearchBar/SearchBar'
-import { searchMovies } from './services/movieService'
+import ErrorMessage from '../ErrorMessage/ErrorMessage'
+import Loader from '../Loader/Loader'
+import MovieGrid from '../MovieGrid/MovieGrid'
+import MovieModal from '../MovieModal/MovieModal'
+import SearchBar from '../SearchBar/SearchBar'
+import { searchMovies } from '../../services/movieService'
+import type { Movie } from '../../types/movie'
 import css from './App.module.css'
 
 type ModuleWithDefault<T> = { default: T }
@@ -16,6 +20,7 @@ const ReactPaginate = (
 function App() {
   const [query, setQuery] = useState('')
   const [page, setPage] = useState(1)
+  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null)
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ['movies', query, page],
@@ -51,15 +56,17 @@ function App() {
         />
       ) : null}
 
-      {isLoading ? <p className={css.message}>Loading...</p> : null}
-      {isError ? (
-        <p className={css.message}>Something went wrong. Please try again.</p>
-      ) : null}
+      {isLoading ? <Loader /> : null}
+      {isError ? <ErrorMessage /> : null}
       {!isLoading && !isError && query !== '' && movies.length === 0 ? (
-        <p className={css.message}>No movies found for your request.</p>
+        <ErrorMessage message="No movies found for your request." />
       ) : null}
 
-      <MovieGrid movies={movies} />
+      <MovieGrid movies={movies} onSelect={setSelectedMovie} />
+
+      {selectedMovie ? (
+        <MovieModal movie={selectedMovie} onClose={() => setSelectedMovie(null)} />
+      ) : null}
     </div>
   )
 }
