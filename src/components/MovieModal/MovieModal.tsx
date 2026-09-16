@@ -8,7 +8,7 @@ interface MovieModalProps {
   onClose: () => void
 }
 
-const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500'
+const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w780'
 
 const modalRoot = document.getElementById('modal-root') as HTMLElement
 
@@ -52,10 +52,10 @@ function MovieModal({ movie, onClose }: MovieModalProps) {
         >
           &times;
         </button>
-        {movie.poster_path ? (
+        {movie.backdrop_path ? (
           <img
             className={css.poster}
-            src={`${IMAGE_BASE_URL}${movie.poster_path}`}
+            src={`${IMAGE_BASE_URL}${movie.backdrop_path}`}
             alt={movie.title}
           />
         ) : null}
